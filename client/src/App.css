@@ -1,0 +1,5 @@
+/* Creating vertical flexbox for nav links (chat rooms) */
+.nav {
+    display: flex;
+    flex-direction: column;
+}
