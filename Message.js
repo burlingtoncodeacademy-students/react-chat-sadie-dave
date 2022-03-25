@@ -8,7 +8,7 @@ db.on("error", console.error.bind("connection error"));
 
 
 
-const Message = new mongoose.Schema({
+const messageSchema = new mongoose.Schema({
 
     when: Date,
     user: String,
@@ -17,4 +17,4 @@ const Message = new mongoose.Schema({
 
 })
 
-module.exports = Message
+module.exports = messageSchema

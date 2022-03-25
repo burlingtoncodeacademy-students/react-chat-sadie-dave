@@ -1,21 +1,28 @@
 const express = require("express");
 const cors = require('cors');
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8001;
 // require('dotenv').config();
 const app = express();
 const mongoose = require('mongoose')
+const MongoClient = require("mongodb")
+const uri = "mongodb://localhost:27017"
+
 
 app.use(cors());
 
 app.use(express.json());
 
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }));
 
 //bringing in schema 
-const Message = require('./Message.js');
+const messageSchema = require('./Message.js');
 
 //model for schema instances
-const ChatMessage = mongoose.model('ChatMessage', Message);
+const ChatMessage = mongoose.model('ChatMessage', messageSchema);
+
+app.get('/', (req, res) =>{
+  res.send(ChatMessage)
+})
 
 
 //get request to access info from database to render in chat box component
@@ -43,9 +50,9 @@ app.get("/:id", async (request, response) => {
 app.post("/:id", async (request, response) => {
 
 
-  console.log(request.params);
+  // console.log(request.params);
 
-  console.log(request.body);
+  // console.log(request.body);
 
   //pulls date out of request body and adds it to variable to pass it to model
   let when = request.body.when;
@@ -72,16 +79,10 @@ app.post("/:id", async (request, response) => {
     //adds entry to ChatMessage collection in chatroom database
     entry.save();
 
-    console.log(request.params);
-
-    //pulls parameter from request object  
-    let id = request.params['id']
-
-    //created connection with database and assigns it to a variable collection
-    let collection = await this.db()
+    // console.log(request.params);
 
     //uses find method to search collection for documents with room value that matches request parameter
-    let result = await collection.find({room: id})
+    let result = await ChatMessage.find({room: room})
 
     console.log(result)
 
