@@ -2,13 +2,21 @@ import React from 'react'
 import ChatBox from './ChatBox'
 import NavLinks from './NavLinks'
 import '../App.css'
+import Banner from './Banner'
 
-export default function Main() {
+export default function Main(props) {
+
+    
+    
     return(
-        <div>
-            <h1>Main</h1>
+        <div className="pageContainer">
+            <Banner />
+
+            <div className='mainContainer'>
             <NavLinks/>
-            <ChatBox/>
+            <ChatBox id={props.id}
+            />
+            </div>
         </div>
     )
 }

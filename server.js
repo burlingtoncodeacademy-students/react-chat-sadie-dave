@@ -4,8 +4,6 @@ const port = process.env.PORT || 8001;
 // require('dotenv').config();
 const app = express();
 const mongoose = require('mongoose')
-const MongoClient = require("mongodb")
-const uri = "mongodb://localhost:27017"
 
 
 app.use(cors());
@@ -20,26 +18,26 @@ const messageSchema = require('./Message.js');
 //model for schema instances
 const ChatMessage = mongoose.model('ChatMessage', messageSchema);
 
-app.get('/', (req, res) =>{
-  res.send(ChatMessage)
-})
+// not necessary
+// app.get('/', (req, res) =>{
+//   res.send(ChatMessage)
+// })
 
 
 //get request to access info from database to render in chat box component
 app.get("/:id", async (request, response) => {
 
-  console.log(request.params);
+  
 
     //pulls parameter from request object  
     let id = request.params['id']
-
-    //created connection with database and assigns it to a variable collection
-    let collection = await this.db()
+  
+    
 
     //uses find method to search collection for documents with room value that matches request parameter
-    let result = await collection.find({room: id})
+    let result = await ChatMessage.find({room: id})
 
-    console.log(result)
+    
 
     //send results back to client in response object
     response.json(result)
@@ -50,10 +48,7 @@ app.get("/:id", async (request, response) => {
 app.post("/:id", async (request, response) => {
 
 
-  // console.log(request.params);
-
-  // console.log(request.body);
-
+  
   //pulls date out of request body and adds it to variable to pass it to model
   let when = request.body.when;
 
@@ -66,6 +61,7 @@ app.post("/:id", async (request, response) => {
   //pulls text content out of request body and adds it to variable to pass it to model
   let body = request.body.body;
 
+  // can shorten if you'd like
   const entry = new ChatMessage({
 
     //builds model instance with variable values
@@ -79,12 +75,12 @@ app.post("/:id", async (request, response) => {
     //adds entry to ChatMessage collection in chatroom database
     entry.save();
 
-    // console.log(request.params);
+    
 
     //uses find method to search collection for documents with room value that matches request parameter
     let result = await ChatMessage.find({room: room})
 
-    console.log(result)
+    
 
     //send results back to client in response object
     response.json(result)

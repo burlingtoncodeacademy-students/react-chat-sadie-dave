@@ -1,5 +1,202 @@
 /* Creating vertical flexbox for nav links (chat rooms) */
+
+/* font-family: 'Dela Gothic One', cursive;
+font-family: 'Dosis', sans-serif;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+
+
+#body {
+        font-size: 62.5%;
+        margin: auto;
+        height: 100vh;
+}
+
+/* home page */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid pink;
+    width: 90vw;
+    height: 100vh;
+    margin: auto;
+
+}
+
+.homeChatBoxContainer {
+    display: flex;
+    justify-content: center;
+    border: 2px solid green;
+
+}
+
+.homeChatInnerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 2px solid green;
+
+}
+
+.formDiv {
+    margin-bottom: .8rem;
+    border: 2px solid green;
+
+}
+
+
+/* link pages */
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    height: 100vh;
+    margin: auto;
+
+}
+
+
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid yellow;
+    margin-bottom: 1.6rem;
+
+}
+
+.roomsContainer {
+    border: 2px solid purple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 35vw;
+
+}
+
 .nav {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    border: 2px solid purple;
+    width: 100%;
+}
+
+.links {
+    margin: .4rem;
+    font-size: .8rem;
+    border: 2px solid purple;
+    text-decoration: none;
+
+}
+
+.ad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    border: 2px solid black;
+    margin: .8rem
+}
+
+.chatBoxContainer {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 55vw;
+    height: 100%;
+    justify-content: space-between;
+}
+
+input {
+    margin: .8rem;
+}
+
+h1 {
+    font-size: 3.2rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.6rem;
+    margin: .8rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+
+    .mainContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+    }
+
+    .chatBoxContainer {
+        flex-direction: column;
+        width: 90vw;
+    }
+    
+    .roomsContainer {
+        width:90vw;
+    
+    }
+
+    .homeChatBoxContainer {
+        flex-direction: column;
+    
+    }
+
+    form {
+        flex-direction: column;
+
+    
+    }
+}
+
+/*Banner styling*/
+
+.mainContainer {
+    width: 100%
+}
+
+#title {
+    background-color: rgb(142, 66, 145);
+    color:white;
+    margin-bottom:0px;
+}
+
+#subTitle {
+    background-color: rgb(142, 66, 145);
+    color:white;
+    margin:0px;
+}
+
+form {
+    margin: auto;
+}
+
+#messages {
+    list-style-type: none;
+    margin-left:30px;
+}
+
+button {
+    background-color: greenyellow;
+    width: 30%;
 }
