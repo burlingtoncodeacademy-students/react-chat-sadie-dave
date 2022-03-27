@@ -39,16 +39,18 @@ export default function NavLinks(){
             <div className='roomsContainer'>
             <h3>Available Rooms</h3>
             <section className='nav'>
-                <NavLink className="links" to='/tea'>All About Tea</NavLink>
-                <NavLink className="links" to='/plants'>Chat About Plants</NavLink>
-                <NavLink className="links" to='/pets'>Fur Babies</NavLink>
-                <NavLink className="links" to='/adventures'>Adventures</NavLink>
+                <NavLink className="links" to='/tea'>Tea Chat</NavLink>
+                <NavLink className="links" to='/plants'>Plants Chat</NavLink>
+                <NavLink className="links" to='/pets'>Fur Babies Chat</NavLink>
+                <NavLink className="links" to='/adventures'>Adventures Chat</NavLink>
             </section>
 
             <section>
+              <a href='https://www.danielislanddentistry.com/'>
                 <div className="ad">
                     <img src={ad} width='90%' height='90%'></img>
                 </div>
+                </a>
             </section>
 
             </div>

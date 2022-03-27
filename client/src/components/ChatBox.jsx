@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import Messages from "./Messages";
 // import MessageDisplay from './MessageDisplay'
 
@@ -49,40 +49,48 @@ export default function ChatBox(props) {
       },
     });
     let data = await response.json();
-    
+
     setMessages(data);
   }
 
   return (
     <main>
-      <div className="chatBoxContainer">
-        <h1>{messages.room}</h1>
-        <Messages dataResponse={messages} id={id} />
-        {/* <MessageDisplay display={initialData}/> */}
-        {/* <Messages dataResponse={messages}/> */}
+      <h1>{messages.room}</h1>
+      <Messages dataResponse={messages} id={id} />
 
-        {/* You need a Messages component to display the messages
-             Message */}
+      <div className="formDiv">
         <form onSubmit={handleSubmit}>
-          <input
-            name="user"
-            type="text"
-            value={user}
-            placeholder="Enter your username"
-            onChange={(e) => {
-              setUser(e.target.value);
-            }}
-          ></input>
-          <input
-            name="body"
-            type="text"
-            value={body}
-            placeholder="Type your message.."
-            onChange={(e) => {
-              setBody(e.target.value);
-            }}
-          ></input>
-          <button type="submit">Send</button>
+          <label>
+            User Name:
+            <input
+              name="user"
+              type="text"
+              value={user}
+              maxlength="150"
+              placeholder="Enter your username"
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+            ></input>
+          </label>
+
+          <label>
+            Message:
+            <input
+              name="body"
+              type="text"
+              maxlength="150"
+              value={body}
+              placeholder="Type your message.."
+              onChange={(e) => {
+                setBody(e.target.value);
+              }}
+            ></input>
+          </label>
+
+          <div className="button">
+            <button type="submit">Send</button>
+          </div>
         </form>
       </div>
     </main>

@@ -1,20 +1,22 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 
-export default function Messages (props) {
-   let messageArray = props.dataResponse
+export default function Messages(props) {
+  let messageArray = props.dataResponse;
 
-    const [data, setData] = useState("");
+  //sanitizing props for header
+  let id = props.id;
 
-    // not necessary
-    // let id = props.id
-    // useEffect(() => {
-    //     setData(id)
-    // }, [])
+  let idFirstLetter = id[0].toUpperCase();
 
-   let userBodyArray = [];
+  let restOfId = id.slice(1);
 
-   for(let i = 0; i < messageArray.length; i++) {
+  id = idFirstLetter + restOfId;
 
+  const [data, setData] = useState("");
+
+  let userBodyArray = [];
+
+  for (let i = 0; i < messageArray.length; i++) {
     //looping through all entries
     let user = messageArray[i].user;
     let body = messageArray[i].body;
@@ -22,20 +24,24 @@ export default function Messages (props) {
     //taking user and body from a single entry and combining them into a string
     let userBody = user + ": " + body;
 
-
     //add each instance to userBodyArrray
-    userBodyArray.push(userBody)
-   }
-   // use something like nanoid to generate unique ids
-   
-   const listItems = userBodyArray.map((userBodyArray, index) => {
-       // debugger
-      return <li key={`userBodyArray-${index}`}>{userBodyArray}</li>
-   });
+    userBodyArray.push(userBody);
+  }
+  // use something like nanoid to generate unique ids
 
-    return (
-        <ul id='messages'>
-            {listItems}
-        </ul>
-    )
+  const listItems = userBodyArray.map((userBodyArray, index) => {
+
+    return <li key={`userBodyArray-${index}`}>{userBodyArray}</li>;
+  });
+
+  return (
+    <>
+    <div id="propsHeader">
+      <h1>Let's Chat About {id}!</h1>
+    </div>
+    <div id="scrollContainer">
+        <ul id="messages">{listItems}</ul>
+    </div>
+    </>
+  );
 }
