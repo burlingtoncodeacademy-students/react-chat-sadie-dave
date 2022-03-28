@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Messages from "./Messages";
-// import MessageDisplay from './MessageDisplay'
 
 export default function ChatBox(props) {
   let { id } = useParams();
@@ -10,54 +9,52 @@ export default function ChatBox(props) {
   const [user, setUser] = useState("");
   const [body, setBody] = useState("");
   const [messages, setMessages] = useState([]);
-  // const [initialData, setInitialData] = useState([]) // not necessary
-
+ 
+//Fetching data based on URL parameters to display messages that correlate with each chat room.
   useEffect(() => {
     let isConnectedToServer = true;
-
     async function getData() {
-      // debugger;
       let response = await fetch(`http://localhost:8001/${id}`);
-      // debugger;
       response = await response.json();
-      // debugger;
       setMessages(response);
     }
     if (isConnectedToServer) {
       getData();
     }
-
-    // cleanup function to stop getData from running more than needed: https://blog.logrocket.com/understanding-react-useeffect-cleanup-function/
+    // cleanup function to stop getData from running more than needed
     return () => {
       isConnectedToServer = false;
     };
-  }, [id]);
+  }, [id]);//useEffect Hook runs each time URL param changes
 
+
+//Submit handler function - posts form input to server/database on submit
   async function handleSubmit(e) {
     e.preventDefault();
 
     let response = await fetch(`http://localhost:8001/${id}`, {
       method: "POST",
       body: JSON.stringify({
-        when: new Date(), // doesn't change, so doesn't need to be state
+        //setting states 
+        when: new Date(),
         user,
         body,
-        room: id, // doesn't change format from the original props, no need to make as state
+        room: id,
       }),
       headers: {
         "Content-type": "application/json",
       },
     });
     let data = await response.json();
-
-    setMessages(data);
+    setMessages(data);//setting data returned from server to messages state
   }
 
   return (
     <main>
-      <h1>{messages.room}</h1>
+      {/* Rendering Messages component and passing messages state as props */}
       <Messages dataResponse={messages} id={id} />
 
+      {/* form for inputting username and chat message. Assigning handleSubmit function to forms onSubmit action*/}
       <div className="formDiv">
         <form onSubmit={handleSubmit}>
           <label>
@@ -69,7 +66,7 @@ export default function ChatBox(props) {
               maxlength="150"
               placeholder="Enter your username"
               onChange={(e) => {
-                setUser(e.target.value);
+                setUser(e.target.value); //setting state on change of input
               }}
             ></input>
           </label>
@@ -83,7 +80,7 @@ export default function ChatBox(props) {
               value={body}
               placeholder="Type your message.."
               onChange={(e) => {
-                setBody(e.target.value);
+                setBody(e.target.value); // setting state on change of input
               }}
             ></input>
           </label>

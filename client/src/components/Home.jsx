@@ -1,16 +1,15 @@
 import React from "react";
 import NavLinks from "./NavLinks";
-import "../home.css";
 import Banner from "./Banner";
 
 export default function ChatBox() {
   return (
     <main>
       <div className="container">
-        <Banner />
+        <Banner /> {/* Rendering Banner component */}
 
         <div className="homeChatBoxContainer">
-          <NavLinks />
+          <NavLinks /> {/* Rendering NavLinks component */}
 
           <div className="homeChatInnerContainer">
             <div className="homeChatHeader">
@@ -18,6 +17,8 @@ export default function ChatBox() {
             </div>
 
             <div className="formDiv">
+
+              {/* Creating "dummy form" that has disabled inputs and send button until you click on a chat room */}
               <form>
                 <label>
                   USER NAME:
@@ -45,6 +46,7 @@ export default function ChatBox() {
                   </button>
                 </div>
               </form>
+              {/* ^^^^^^^^^^^^^^^^ dummy form ^^^^^^^^^^^^^^ */}
             </div>
           </div>
         </div>

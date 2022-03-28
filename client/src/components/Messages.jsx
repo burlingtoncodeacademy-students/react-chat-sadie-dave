@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 export default function Messages(props) {
-  let messageArray = props.dataResponse;
+  let messageArray = props.dataResponse; //Assigning props to a variable for later use
 
   //sanitizing props for header
   let id = props.id;
@@ -11,8 +11,7 @@ export default function Messages(props) {
   let restOfId = id.slice(1);
 
   id = idFirstLetter + restOfId;
-
-  const [data, setData] = useState("");
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   let userBodyArray = [];
 
@@ -27,19 +26,20 @@ export default function Messages(props) {
     //add each instance to userBodyArrray
     userBodyArray.push(userBody);
   }
-  // use something like nanoid to generate unique ids
 
+  //mapping over userBodyArray to generate list item elements for each index, assinging to listItems variable
   const listItems = userBodyArray.map((userBodyArray, index) => {
-
     return <li key={`userBodyArray-${index}`}>{userBodyArray}</li>;
   });
 
   return (
     <>
     <div id="propsHeader">
+      {/* using id props to generate header based on url params */}
       <h1>Let's Chat About {id}!</h1>
     </div>
     <div id="scrollContainer">
+        {/* displaying each list item */}
         <ul id="messages">{listItems}</ul>
     </div>
     </>
